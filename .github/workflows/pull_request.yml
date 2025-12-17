@@ -1,0 +1,11 @@
+name: Pull Request Workflow
+
+on: pull_request
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Echo greeting
+        run: echo "hello ${{ github.env.AWS_ACCOUNT_ID }} AWS Account!"

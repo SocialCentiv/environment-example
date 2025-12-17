@@ -1,0 +1,21 @@
+name: Push to Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet_staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Echo greeting
+        run: echo "hello ${{ github.env.AWS_ACCOUNT_ID }} AWS Account!"
+  greet_production:
+    needs: greet_staging
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Echo greeting
+        run: echo "hello ${{ github.env.AWS_ACCOUNT_ID }} AWS Account!"
